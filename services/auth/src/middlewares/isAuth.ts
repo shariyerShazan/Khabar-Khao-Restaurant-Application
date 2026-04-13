@@ -1,17 +1,11 @@
 import { Request, Response, NextFunction } from 'express';
-import jwt, { JwtPayload } from 'jsonwebtoken';
-import { IUser } from '../modules/auth/model/user.model.js';
+import jwt from 'jsonwebtoken';
+// import { IUser } from '../modules/auth/model/user.model.js';
 import { sendResponse } from '../utils/sendResponse.js';
 
-export interface AuthenticatedRequest extends Request {
-  userId: string | null
-}
 
-export const isAuth = (
-  req: AuthenticatedRequest,
-  res: Response,
-  next: NextFunction,
-) => {
+
+export const isAuth = (req: Request, res: Response, next: NextFunction) => {
   try {
     const authHeader = req.headers.authorization;
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
@@ -29,7 +23,9 @@ export const isAuth = (
         message: 'Please login - Token missing',
       });
     }
-    const decode: any = jwt.verify(token, process.env.JWT_SECRET!);
+    const decode = jwt.verify(token, process.env.JWT_SECRET!) as {
+      userId: string;
+    };
     if (!decode) {
       return sendResponse(res, {
         statusCode: 401,
@@ -37,8 +33,8 @@ export const isAuth = (
         message: 'Please login - Token expired or invalid',
       });
     }
-   req.userId = decode.userId;
-   next()
+    req.userId = decode.userId;
+    next();
   } catch (error) {
     console.log(error);
     return sendResponse(res, {

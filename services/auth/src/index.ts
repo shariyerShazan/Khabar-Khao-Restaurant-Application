@@ -4,12 +4,24 @@ import { connectDb } from './config/db.js';
 import { AuthRouter } from './modules/auth/auth.routes.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 import { Request, Response } from 'express';
+import cors from "cors"
 
 dotenv.config();
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(
+  cors({
+    origin: [
+      'http://localhost:5174',
+      'http://localhost:5173',
+      'http://localhost:3000',
+      'http://localhost:3001',
+    ],
+    credentials: true,
+  }),
+);
 
 app.get('/', (req: Request, res: Response) => {
   res.json({

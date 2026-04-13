@@ -8,8 +8,9 @@ import axios from 'axios';
 
 export class AuthService {
   static async loginUser(dto: UserLoginDto) {
-    const { oauthToken } = dto;
-    const googleRes = await oath2client.getToken(oauthToken);
+    const { code } = dto;
+    console.log('CODE:', code);
+    const googleRes = await oath2client.getToken(code);
     oath2client.setCredentials(googleRes.tokens);
 
     const userRes = await axios.get(
@@ -66,7 +67,7 @@ export class AuthService {
 
     return {
       accessToken: token,
-      findUser,
+      user: findUser,
     };
   }
 
