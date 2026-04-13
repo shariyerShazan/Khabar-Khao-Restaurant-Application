@@ -61,7 +61,7 @@ const Login = () => {
       {/* CARD */}
       <div className="w-[380px] bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl p-10 text-center text-white z-10">
         {/* LOGO */}
-        <img src={logo} className="w-16 h-16 mx-auto mb-4" />
+        <img src={logo} className="w-16 h-16 mx-auto mb-4 object-cover" />
 
         <h1 className="text-3xl font-bold">Khabar Khao</h1>
 
