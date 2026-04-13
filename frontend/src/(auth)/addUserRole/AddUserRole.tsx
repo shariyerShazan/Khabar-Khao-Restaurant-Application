@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useAddRoleMutation } from '@/redux/features/auth.api';
 import { useNavigate } from 'react-router';
 import { useState } from 'react';
@@ -6,6 +7,7 @@ import { FaUtensils } from 'react-icons/fa';
 import { MdDeliveryDining } from 'react-icons/md';
 import { IoRestaurant } from 'react-icons/io5';
 import logo from '@/assets/brand-logo.png';
+import { toast } from 'react-toastify';
 
 const roles = [
   {
@@ -33,10 +35,15 @@ const AddUserRole = () => {
   const handleRole = async (role: string) => {
     try {
       setLoadingRole(role);
-      await addRole({ role }).unwrap();
-      navigate('/');
-    } catch (err) {
+      const res = await addRole({ role }).unwrap();
+      console.log(res);
+      if (res.success) {
+        toast.success(res?.message);
+        navigate('/');
+      }
+    } catch (err: any) {
       console.log(err);
+      toast.error(err?.data?.message);
     } finally {
       setLoadingRole(null);
     }
