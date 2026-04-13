@@ -5,6 +5,8 @@ import ErrorPage from '@/components/shared/ErrorPage';
 import Home from '@/(customer)/pages/home/Home';
 import Login from '@/(auth)/login/Login';
 import AddUserRole from '@/(auth)/addUserRole/AddUserRole';
+import Terms from '@/(auth)/privacy&terms/Terms';
+import Privacy from '@/(auth)/privacy&terms/Privacy';
 
 export const Routes = createBrowserRouter([
   {
@@ -23,7 +25,15 @@ export const Routes = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: "/add-role",
-    element: <AddUserRole />
-  }
+    path: '/add-role',
+    element: <AddUserRole />,
+  },
+  {
+    path: 'terms',
+    element: <Terms />,
+  },
+  {
+    path: 'privacy',
+    element: <Privacy />
+  },
 ]);

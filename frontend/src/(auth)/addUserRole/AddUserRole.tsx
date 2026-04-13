@@ -45,7 +45,8 @@ const AddUserRole = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#0b0b0f] relative overflow-hidden">
       {/* BACKGROUND GLOW */}
-      <div className="absolute w-[600px] h-[600px] bg-[#ea2853] blur-[200px] opacity-10 top-[-160px] right-[-160px]" />
+      <div className="absolute w-[600px] h-[600px] bg-[#ea2853] blur-[200px] opacity-15 top-[-150px] left-[-150px]" />
+      <div className="absolute w-[500px] h-[500px] bg-pink-500 blur-[180px] opacity-10 bottom-[-150px] right-[-150px]" />
 
       {/* CARD */}
       <div className="w-[420px] bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 text-white text-center shadow-2xl z-10">
